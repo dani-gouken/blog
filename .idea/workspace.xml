@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0a1c2caf-9297-411c-973d-fd9b268aabb2" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="ProjectId" id="1Vz50zW6ck1dz0JbVaqhsd19Vvp" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/framework/src/Providers/Presentation" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\oxygen\project\src\Services\Infrastructure" />
+      <recent name="C:\xampp\htdocs\oxygen\framework\src\Providers\Presentation" />
+      <recent name="C:\xampp\htdocs\oxygen\project\src\Services" />
+      <recent name="C:\xampp\htdocs\oxygen\project\src\Services\Framework\AbstractTypes" />
+      <recent name="C:\xampp\htdocs\oxygen\project\src\Services\Framework" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a1c2caf-9297-411c-973d-fd9b268aabb2" name="Default Changelist" comment="" />
+      <created>1578242864741</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578242864741</updated>
+      <workItem from="1578242872362" duration="57000" />
+      <workItem from="1578243014763" duration="3668000" />
+      <workItem from="1578252654484" duration="4821000" />
+      <workItem from="1578341205352" duration="655000" />
+      <workItem from="1578417807121" duration="1342000" />
+      <workItem from="1578509293638" duration="9205000" />
+      <workItem from="1578693440896" duration="1712000" />
+      <workItem from="1578770709194" duration="10048000" />
+      <workItem from="1578836816694" duration="9954000" />
+      <workItem from="1578866061503" duration="411000" />
+      <workItem from="1579120951106" duration="10139000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+use Oxygen\Providers\Console\Console;
+use Oxygen\Providers\Console\ConsoleProvider;
+use Zend\Diactoros\ServerRequestFactory;
+
+$app = require_once "application.php";
+$app->handle(ServerRequestFactory::fromGlobals());
+$app->use(new ConsoleProvider());
+$console = $app->get(Console::class)->getApplication();
+$console->run();
