@@ -17,6 +17,7 @@ $appFactory = AppFactory::createWithDefaultContainer([
 $appFactory->usePlates();
 $appFactory->useDefaultRouter();
 $appFactory->useDoctrine();
+$appFactory->usePhpSession();
 
 $app = $appFactory->getApp();
 $app->use(new ErrorHandlerProvider());

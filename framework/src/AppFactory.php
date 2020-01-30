@@ -11,6 +11,7 @@ use Oxygen\Providers\Configurator\ConfigProvider;
 use Oxygen\Providers\Configurator\Configurator;
 use Oxygen\Providers\Database\Doctrine\DoctrineProvider;
 use Oxygen\Providers\Routing\RoutingProvider;
+use Oxygen\Providers\Session\PhpSessionProvider;
 use Oxygen\Providers\Templating\Plates\PlatesProvider;
 use Oxygen\Providers\Templating\Twig\TwigProvider;
 
@@ -85,5 +86,9 @@ class AppFactory
         $provider = new ConfigProvider($configFiles);
         $this->app->use($provider);
         $this->config = $this->app->getContainer()->get(Configurator::class);
+    }
+
+    public function usePhpSession(){
+        $this->app->use(new PhpSessionProvider());
     }
 }

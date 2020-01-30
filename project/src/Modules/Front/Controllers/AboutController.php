@@ -2,7 +2,7 @@
 
 namespace App\modules\Front\Controllers;
 
-use App\Services\Infrastructure\AbstractTypes\AbstractWebController;
+use Oxygen\AbstractTypes\AbstractWebController;
 use Oxygen\Providers\Presentation\HtmlPresenter;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

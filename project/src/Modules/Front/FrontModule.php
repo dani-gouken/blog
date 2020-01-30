@@ -5,7 +5,7 @@ namespace App\Modules\Front;
 
 use App\modules\Front\Controllers\AboutController;
 use App\Modules\Front\Controllers\IndexController;
-use App\Services\Infrastructure\AbstractTypes\AbstractModule;
+use Oxygen\AbstractTypes\AbstractModule;
 use Oxygen\Providers\Routing\Route;
 use Oxygen\Providers\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Infrastructure\AbstractTypes;
+namespace Oxygen\AbstractTypes;
 use Fig\Http\Message\RequestMethodInterface;
 use Oxygen\Contracts\Providers\Templating\RendererContract;
 use Psr\Http\Message\ResponseInterface;

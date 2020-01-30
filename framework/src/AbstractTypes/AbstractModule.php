@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Infrastructure\AbstractTypes;
+namespace Oxygen\AbstractTypes;
 use Oxygen\Contracts\ContainerContract;
 use Oxygen\Contracts\ModuleContract;
 use Oxygen\Contracts\Providers\Templating\RendererContract;
