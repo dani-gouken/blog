@@ -2,8 +2,6 @@
 
 namespace Oxygen\Providers\Configurator;
 
-use PHPUnit\Exception;
-
 class Configurator
 {
     private $config = [];

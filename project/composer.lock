@@ -1060,6 +1060,90 @@
             "time": "2020-01-15T10:00:00+00:00"
         },
         {
+            "name": "league/flysystem",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "87f1b8155bc78b514c76af79c6d14405df0a6f97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/87f1b8155bc78b514c76af79c6d14405df0a6f97",
+                "reference": "87f1b8155bc78b514c76af79c6d14405df0a6f97",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": ">=5.5.9"
+            },
+            "conflict": {
+                "league/flysystem-sftp": "<1.0.6"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^3.4",
+                "phpunit/phpunit": "^5.7.26"
+            },
+            "suggest": {
+                "ext-fileinfo": "Required for MimeType",
+                "ext-ftp": "Allows you to use FTP server storage",
+                "ext-openssl": "Allows you to use FTPS server storage",
+                "league/flysystem-aws-s3-v2": "Allows you to use S3 storage with AWS SDK v2",
+                "league/flysystem-aws-s3-v3": "Allows you to use S3 storage with AWS SDK v3",
+                "league/flysystem-azure": "Allows you to use Windows Azure Blob storage",
+                "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
+                "league/flysystem-eventable-filesystem": "Allows you to use EventableFilesystem",
+                "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
+                "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
+                "league/flysystem-webdav": "Allows you to use WebDAV storage",
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
+                "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
+                "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Filesystem abstraction: Many filesystems, one API.",
+            "keywords": [
+                "Cloud Files",
+                "WebDAV",
+                "abstraction",
+                "aws",
+                "cloud",
+                "copy.com",
+                "dropbox",
+                "file systems",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "rackspace",
+                "remote",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "time": "2020-01-26T19:29:10+00:00"
+        },
+        {
             "name": "league/plates",
             "version": "v3.x-dev",
             "source": {
@@ -1324,18 +1408,20 @@
             "dist": {
                 "type": "path",
                 "url": "C:/xampp/htdocs/blog/framework",
-                "reference": "a274709c0fc0e0c2e4506a605c180aa21c6a4fc0"
+                "reference": "4632dc8664507a1f0bf9284816c154d2343e1384"
             },
             "require": {
                 "daniel/expressive-dic": "@dev",
                 "doctrine/orm": "^2.7",
                 "fig/http-message-util": "^1.1",
+                "league/flysystem": "^1.0",
                 "league/plates": "^3.3",
                 "middlewares/whoops": "^1.2",
                 "nikic/fast-route": "^1.3",
                 "phpspec/prophecy": "^1.10",
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0",
+                "rakit/validation": "^1.2",
                 "symfony/console": "^5.0",
                 "twig/twig": "^3.0",
                 "zendframework/zend-diactoros": "^2.1"
@@ -1348,7 +1434,10 @@
                 "psr-4": {
                     "Oxygen\\": "src",
                     "Oxygen\\Test\\": "tests"
-                }
+                },
+                "files": [
+                    "src/helper.php"
+                ]
             },
             "scripts": {
                 "test": [
@@ -1427,12 +1516,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "93919e334b0cb304fb04429b4b3a3b1e1787c873"
+                "reference": "da71602ae92163cfa94f5e5dbdd969629e060a05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/93919e334b0cb304fb04429b4b3a3b1e1787c873",
-                "reference": "93919e334b0cb304fb04429b4b3a3b1e1787c873",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/da71602ae92163cfa94f5e5dbdd969629e060a05",
+                "reference": "da71602ae92163cfa94f5e5dbdd969629e060a05",
                 "shasum": ""
             },
             "require": {
@@ -1472,7 +1561,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-01-27T20:01:09+00:00"
+            "time": "2020-02-02T19:24:25+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -1480,12 +1569,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "28517b98024f4d578e7a0774fa4a73ca2a73c724"
+                "reference": "0708a5714a03b5b27a65786543503d9d3ee50e07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/28517b98024f4d578e7a0774fa4a73ca2a73c724",
-                "reference": "28517b98024f4d578e7a0774fa4a73ca2a73c724",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/0708a5714a03b5b27a65786543503d9d3ee50e07",
+                "reference": "0708a5714a03b5b27a65786543503d9d3ee50e07",
                 "shasum": ""
             },
             "require": {
@@ -1518,7 +1607,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2019-12-27T21:51:48+00:00"
+            "time": "2020-02-02T19:26:52+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -1888,6 +1977,47 @@
             "time": "2019-11-12T16:45:05+00:00"
         },
         {
+            "name": "rakit/validation",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rakit/validation.git",
+                "reference": "d7710a2c8133d89b5640b79e832f370ad2d58767"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rakit/validation/zipball/d7710a2c8133d89b5640b79e832f370ad2d58767",
+                "reference": "d7710a2c8133d89b5640b79e832f370ad2d58767",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rakit\\Validation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammad Syifa",
+                    "email": "emsifa@gmail.com"
+                }
+            ],
+            "description": "PHP Laravel like standalone validation library",
+            "time": "2019-07-10T03:20:16+00:00"
+        },
+        {
             "name": "sebastian/comparator",
             "version": "dev-master",
             "source": {
@@ -2133,12 +2263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537"
+                "reference": "fd8f1d69ecea3adae90fcfbdfecf15837195ffe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/b341b0d05cbb1e085125705a8cf59d874625d537",
-                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537",
+                "url": "https://api.github.com/repos/symfony/console/zipball/fd8f1d69ecea3adae90fcfbdfecf15837195ffe2",
+                "reference": "fd8f1d69ecea3adae90fcfbdfecf15837195ffe2",
                 "shasum": ""
             },
             "require": {
@@ -2202,7 +2332,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-30T12:04:33+00:00"
+            "time": "2020-02-03T13:51:48+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2443,12 +2573,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "44638e93a8d357981637ef17634da8e3a676ed74"
+                "reference": "d291382a24d6c05b5126c1e1e5abeadddd82d7b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/44638e93a8d357981637ef17634da8e3a676ed74",
-                "reference": "44638e93a8d357981637ef17634da8e3a676ed74",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d291382a24d6c05b5126c1e1e5abeadddd82d7b2",
+                "reference": "d291382a24d6c05b5126c1e1e5abeadddd82d7b2",
                 "shasum": ""
             },
             "require": {
@@ -2497,7 +2627,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2020-01-13T08:20:31+00:00"
+            "time": "2020-01-31T08:01:39+00:00"
         },
         {
             "name": "webmozart/assert",

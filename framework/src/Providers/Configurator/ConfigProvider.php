@@ -17,13 +17,12 @@ class ConfigProvider implements ServiceProviderContract
     public function __construct(array $files)
     {
         $this->files = $files;
-        define("DS",DIRECTORY_SEPARATOR);
     }
     public function register(AppContract $app)
     {
         $instance = new Configurator();
         foreach ($this->files as $file){
-            $instance->loadFile($file);
+            $instance->loadFile($app->appPath($file));
         }
         $app->getContainer()->set(Configurator::class,$instance);
     }

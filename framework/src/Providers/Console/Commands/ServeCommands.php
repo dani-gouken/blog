@@ -9,40 +9,44 @@ use PHPUnit\Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
 
 class ServeCommands extends Command
 {
     protected static $defaultName = 'serve';
+    private $servePath;
     /**
      * @var Configurator
      */
-    private $configurator;
 
-    public function __construct(Configurator $configurator)
+    public function __construct(string $servePath)
     {
-        $this->configurator = $configurator;
+        $this->servePath =  $servePath;
         parent::__construct();
     }
 
     protected function configure()
     {
         $this->setDescription('Serve the application');
-        $this->addArgument("port",InputArgument::OPTIONAL,"serve port");
+        $this->addOption("port","p",
+            InputOption::VALUE_OPTIONAL,
+            "The port where you want to serve",
+            "8000"
+        );
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $port = $input->getArgument("port") ?? 8000;
+        $port = $input->getOption("port");
         try{
-            $appPath = $this->configurator->get("app.path");
-            $defaultPublicPath = dirname(dirname($appPath."/public"));
-            $publicPath = $this->configurator->get("public.path",$defaultPublicPath)."/public";
+            $publicPath = $this->servePath;
             $version = $this->getApplication()->getVersion();
             $output->writeln("Oxygen Please CLI v$version");
             $output->writeln(">> Application serve on port $port");
             exec("php -S localhost:$port -t $publicPath");
         }catch (\Exception $e){
-            $output->writeln($e->getMessage());
+            $output->writeln($e->getMessage()."\n ".$e->getTraceAsString());
         }
         return 0;
     }

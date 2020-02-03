@@ -23,14 +23,7 @@ class PhpSessionProvider implements ServiceProviderContract
 
     public function register(AppContract $app)
     {
-        if(!$this->sessionHasStarted()){
-            session_start();
-        }
         $app->getContainer()->set(PhpSessionManager::class,$this->instance);
         $app->getContainer()->set(SessionManagerContract::class,$this->instance);
-    }
-
-    private function sessionHasStarted(){
-        return session_status() == PHP_SESSION_ACTIVE;
     }
 }

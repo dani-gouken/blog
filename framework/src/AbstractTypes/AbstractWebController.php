@@ -2,6 +2,7 @@
 
 namespace Oxygen\AbstractTypes;
 use Fig\Http\Message\RequestMethodInterface;
+use Oxygen\Contracts\AppContract;
 use Oxygen\Contracts\Providers\Templating\RendererContract;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -35,6 +36,9 @@ abstract class AbstractWebController
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        /**
+         * @var $handler AppContract
+         */
         foreach ($this->controllerMethods as $methods) {
             if ($request->getMethod() == $methods){
                 return $this->{"do".ucfirst(strtolower($methods))}($request,$handler);
@@ -46,4 +50,6 @@ abstract class AbstractWebController
     protected function render(string $view){
         return new HtmlResponse($this->renderer->render($view));
     }
+    public function doGet(ServerRequestInterface $request,AppContract $handler){}
+    public function doPost(ServerRequestInterface $request,AppContract $handler){}
 }

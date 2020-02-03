@@ -8,6 +8,16 @@ use Oxygen\Contracts\Providers\SessionManagerContract;
 
 class PhpSessionManager implements SessionManagerContract
 {
+    public function __construct()
+    {
+        if(!$this->sessionHasStarted() && php_sapi_name() != "cli"){
+            session_start();
+        }
+    }
+
+    private function sessionHasStarted(){
+        return session_status() == PHP_SESSION_ACTIVE;
+    }
 
     public function get(string $key)
     {

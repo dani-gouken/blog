@@ -12,17 +12,21 @@ use Psr\Container\NotFoundExceptionInterface;
 class RoutingProvider implements ServiceProviderContract
 {
     /**
+     * @var string
+     */
+    private $host;
+
+    public function __construct(string $host = null)
+    {
+        $this->host = $host;
+    }
+
+    /**
      * @param AppContract $app
      */
     public function register(AppContract $app)
     {
-        try{
-            $config = $app->get(Configurator::class);
-            $host = $config->get("app.host",null);
-        }catch (NotFoundExceptionInterface $e){
-            $host = null;
-        }
-        $router = new Router($host);
+        $router = new Router($this->host);
         $app->getContainer()->set(RouterContract::class,$router);
         $app->getContainer()->set(Router::class,$router);
     }

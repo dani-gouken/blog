@@ -42,33 +42,14 @@
                     <a class="nav-link" href="<?= $this->route("front.about") ?>">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="<?= $this->route("front.contact") ?>">Contact</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <!-- <h1>Web/Mobile developer</h1>
-                    <span class="subheading">Web/Mobile Dev</span> -->
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
 <!-- Main Content -->
-<div class="container">
-    <?= $this->section("content") ?>
-</div>
-
+<?= $this->section("content") ?>
 <hr>
 
 <!-- Footer -->

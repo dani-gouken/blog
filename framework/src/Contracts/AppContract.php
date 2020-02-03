@@ -4,6 +4,7 @@
 namespace Oxygen\Contracts;
 
 use Oxygen\Exceptions\RequestHandlerException;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 interface AppContract extends RequestHandlerInterface
@@ -46,4 +47,17 @@ interface AppContract extends RequestHandlerInterface
      * @return AppContract
      */
     public function use(ServiceProviderContract $provider):self;
+
+    /**
+     * @param string|null $path
+     * @return string
+     */
+    public function appPath(string $path = null):string;
+
+    /**
+     * @param MiddlewareInterface|string $middleware
+     * @return AppContract
+     */
+    public function pipeReplacement($middleware):AppContract;
+
 }

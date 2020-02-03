@@ -2,6 +2,7 @@
 
 namespace Oxygen\Providers\Console\Commands\Modules;
 
+use Oxygen\Contracts\AppContract;
 use Oxygen\Providers\Configurator\Configurator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,15 +12,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 class MakeModuleCommand extends Command
 {
     /**
-     * @var Configurator
+     * @var AppContract
      */
-    private $config;
+    private $app;
 
-    public function __construct(Configurator $config)
-    {
+    public function __construct(AppContract $app){
 
         parent::__construct();
-        $this->config = $config;
+        $this->app = $app;
     }
 
     protected static $defaultName = "make:module";
@@ -31,39 +31,46 @@ class MakeModuleCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $localDisk = disks()->get("local");
         $moduleName = $input->getArgument("module");
-        $appPath = $this->config->get("app.path");
-        $modulePath = $this->config->get("app.module.path",$appPath.DIRECTORY_SEPARATOR."Modules");
-        $modulePath.= DIRECTORY_SEPARATOR.$moduleName;
-        if (file_exists($modulePath)){
+        $configurator = $this->app->getContainer()->get(Configurator::class);
+        $modulePath = $configurator->get("app.module.path",
+           "src".DIRECTORY_SEPARATOR."Modules");
+        $modulePath.= DIRECTORY_SEPARATOR.ucfirst($moduleName);
+
+        if ($localDisk->has($modulePath.DIRECTORY_SEPARATOR)){
             $output->writeln("Module already exists on [$modulePath]");
             return 0;
         }
-        mkdir($modulePath);
         $fileName = ucfirst($moduleName)."Module.php";
-        file_put_contents($modulePath.DIRECTORY_SEPARATOR.$fileName,$this->getTemplate($moduleName));
-        $output->writeln($modulePath);
+        $localDisk->write("$modulePath/$fileName",$this->getTemplate($moduleName));
+        $localDisk->createDir("$modulePath/Controllers");
+        $moduleClass = "\App\Modules\\".$moduleName."\\".ucfirst($moduleName)."Module::class";
+        $mainMiddlewareContent = $localDisk->read("src/Main.php");
+        $mainMiddlewareContent = str_replace("[MODULES]",
+            "[MODULES] \n\t\t\$handler->load($moduleClass);",
+            $mainMiddlewareContent);
+        $localDisk->put("src/Main.php",$mainMiddlewareContent);
+        $output->writeln("Module successfully created on [$modulePath]");
         return 0;
     }
 
     private function getTemplate(string $moduleName){
         $moduleName = ucfirst($moduleName);
+        $moduleNameLowerCase = strtolower($moduleName);
         $moduleNameSpace = "App\Modules\\".$moduleName;
         $moduleClassname = $moduleName."Module";
         return <<<EOT
 <?php
-
-
 namespace $moduleNameSpace;
 
-use App\Modules\AbstractModule;
-use Oxygen\Contracts\ContainerContract;
+use Oxygen\AbstractTypes\AbstractModule;
 use Oxygen\Providers\Routing\Route;
-use Oxygen\Providers\Routing\RouteGroup;
 use Oxygen\Providers\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Oxygen\Contracts\AppContract;
 
 class $moduleClassname extends AbstractModule implements MiddlewareInterface
 {
@@ -72,14 +79,14 @@ class $moduleClassname extends AbstractModule implements MiddlewareInterface
 
     protected function addRoutes(Router \$router)
     {
-     
+        \$router->add(Route::get(
+            "/$moduleNameLowerCase",
+            "$moduleNameLowerCase.home",
+            IndexController::class
+        ));
     }
 
-    protected function addDependencies(ContainerContract \$container)
-    {
-    }
-
-    protected function setUp(ServerRequestInterface \$request, RequestHandlerInterface \$handler)
+    protected function setUp(ServerRequestInterface \$request, AppContract \$app)
     {
     }
 }

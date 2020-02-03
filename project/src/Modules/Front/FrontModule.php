@@ -4,13 +4,14 @@
 namespace App\Modules\Front;
 
 use App\modules\Front\Controllers\AboutController;
+use App\Modules\Front\Controllers\ContactController;
 use App\Modules\Front\Controllers\IndexController;
 use Oxygen\AbstractTypes\AbstractModule;
+use Oxygen\Contracts\AppContract;
 use Oxygen\Providers\Routing\Route;
 use Oxygen\Providers\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 
 class FrontModule extends AbstractModule implements MiddlewareInterface
 {
@@ -30,9 +31,15 @@ class FrontModule extends AbstractModule implements MiddlewareInterface
             "front.about",
             AboutController::class
         ));
+
+        $router->add(Route::get(
+            "/contact",
+            "front.contact",
+            ContactController::class
+        ));
     }
 
-    protected function setUp(ServerRequestInterface $request, RequestHandlerInterface $handler)
+    protected function setUp(ServerRequestInterface $request, AppContract $app)
     {
 
     }

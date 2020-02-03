@@ -1,7 +1,7 @@
 <?php
 return [
     "doctrine.entities.path"=>[
-        dirname(__DIR__) . DS."Entities"
+       "src/Entities"
     ],
     "doctrine.isDevMode"=>false,
     "doctrine.connections"=>[

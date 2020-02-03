@@ -1,6 +1,7 @@
 <?php
 
 namespace Oxygen\AbstractTypes;
+use Oxygen\Contracts\AppContract;
 use Oxygen\Contracts\ContainerContract;
 use Oxygen\Contracts\ModuleContract;
 use Oxygen\Contracts\Providers\Templating\RendererContract;
@@ -38,13 +39,16 @@ abstract class AbstractModule implements ModuleContract
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        /**
+         * @var $handler AppContract
+         */
         $this->setUp($request,$handler);
         $this->addRoutes($this->router);
         return $handler->handle($request);
     }
 
     abstract protected function addRoutes(Router $router);
-    abstract protected function setUp(ServerRequestInterface $request, RequestHandlerInterface $handler);
+    abstract protected function setUp(ServerRequestInterface $request, AppContract $app);
 
     public function getModuleName(){
         return property_exists($this,"MODULE_NAME") ? $this->MODULE_NAME :self::class;

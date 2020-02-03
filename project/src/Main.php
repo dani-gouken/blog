@@ -11,7 +11,9 @@ class Main implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $handler->load(FrontModule::class);
+        // [MODULES] 
+		$handler->load(\App\Modules\Admin\AdminModule::class);
+		$handler->load(FrontModule::class);
         return $handler->handle($request);
     }
 }

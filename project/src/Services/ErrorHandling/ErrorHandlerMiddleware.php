@@ -39,9 +39,9 @@ class ErrorHandlerMiddleware implements MiddlewareInterface
             try {
                 return $handler->handle($request);
             } catch (RouteNotFoundException $e) {
-                return new HtmlResponse($this->renderer->render('errors/404.php'), 404);
+                return new HtmlResponse($this->renderer->render('errors/404'), 404);
             } catch (Exception $e) {
-                return new HtmlResponse($this->renderer->render("errors/500.php"));
+                return new HtmlResponse($this->renderer->render("errors/500"));
             }
         } else {
             $handler->pipe(Whoops::class);

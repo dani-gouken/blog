@@ -1,7 +1,5 @@
 <?php
 namespace Oxygen;
-
-use MyProject\Container;
 use Oxygen\Contracts\AppContract;
 use Oxygen\Contracts\ContainerContract;
 use Oxygen\Contracts\EmitterContract;
@@ -20,13 +18,20 @@ class App implements AppContract
     
     private $middlewares = [];
     private $index = 0;
-    
+    /**
+     * @var string
+     */
+    private $appPath;
+
     public function __construct(
-        ContainerContract $container
+        ContainerContract $container,
+        string $appPath
     ) {
         $this->container = $container;
         $container->set(ContainerContract::class,$this->container);
+        $container->set(AppContract::class,$this);
         self::$instance = $this;
+        $this->appPath = $this->removeSlashesToPath($appPath);
     }
 
     /**
@@ -226,6 +231,10 @@ class App implements AppContract
         return $instance;
     }
 
+    private function removeSlashesToPath(string $path){
+        return trim(trim($path,"/"),"\\");
+    }
+
     /**
      * @param string $classname
      * @return mixed
@@ -240,5 +249,9 @@ class App implements AppContract
 
     public function has(string $abstract){
        return $this->container->has($abstract);
+    }
+
+    public function appPath(string $path = null):string{
+        return $this->appPath.DIRECTORY_SEPARATOR.$this->removeSlashesToPath($path);
     }
 }
