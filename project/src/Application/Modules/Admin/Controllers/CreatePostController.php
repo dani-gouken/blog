@@ -2,7 +2,8 @@
 
 namespace App\Modules\Admin\Controllers;
 
-use App\Actions\Post\ValidateCreatePost;
+use App\Actions\Post\CreatePost;
+use App\Entities\Post;
 use Oxygen\AbstractTypes\AbstractWebController;
 use Oxygen\Contracts\AppContract;
 use Oxygen\Exceptions\RequestHandlerException;
@@ -23,10 +24,18 @@ class CreatePostController extends AbstractWebController implements MiddlewareIn
         $handler->pipe(HtmlPresenter::present("admin/post/create"));
         return $handler->handle($request);
     }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param AppContract $handler
+     * @return ResponseInterface|void
+     * @throws RequestHandlerException
+     */
     public function doPost(ServerRequestInterface $request, AppContract $handler)
     {
-        $handler->pipe(ValidateCreatePost::class);
-        $handler->pipe(redirectRouteAction("front.home"));
+        $handler->pipe(CreatePost::class);
+        $handler->pipe();
+        $handler->pipe(redirectRouteAction("post.index"));
         return $handler->handle($request);
     }
 }

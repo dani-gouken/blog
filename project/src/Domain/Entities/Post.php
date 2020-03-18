@@ -2,13 +2,35 @@
 
 
 namespace App\Entities;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="posts")
+ */
 class Post
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     */
     private $title;
+    /**
+     * @ORM\Column(type="string")
+     */
     private $slug;
+    /**
+     * @ORM\Column(type="text")
+     */
     private $content;
+    /**
+     * @ORM\Column(type="date")
+     */
     private $createdAt;
+    /**
+     * @ORM\Column(type="date",nullable=true)
+     */
     private $updatedAt;
 
     /**
