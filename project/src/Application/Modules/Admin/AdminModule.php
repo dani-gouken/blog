@@ -11,7 +11,6 @@ use Oxygen\Providers\Routing\RouteGroup;
 use Oxygen\Providers\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 use Oxygen\Contracts\AppContract;
 
 class AdminModule extends AbstractModule implements MiddlewareInterface
@@ -25,7 +24,7 @@ class AdminModule extends AbstractModule implements MiddlewareInterface
             $group->add(Route::get("/post","post.index",ListPostsController::class));
             $group->add(Route::create(["GET","POST"],"/post/create","post.create",CreatePostController::class));
             $group->add(Route::create(["GET","POST"],"/post/edit/{id:\d+}","post.edit",EditPostController::class));
-            $group->add(Route::post("/post/delete/{id:\d+}","post.delete",DeletePostController::class));
+            $group->add(Route::get("/post/delete/{id:\d+}","post.delete",DeletePostController::class));
         });
     }
 

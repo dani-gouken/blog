@@ -6,7 +6,7 @@ namespace Oxygen\Providers\Session;
 
 use Oxygen\Contracts\Providers\SessionManagerContract;
 
-class Flash
+class FlashMessageManager
 {
     private $cache = [];
     /**
@@ -20,8 +20,8 @@ class Flash
 
     public function __construct(SessionManagerContract $session)
     {
-        $this->cache = $this->session->all();
         $this->session = $session;
+        $this->cache = $this->session->all();
         $this->instance = $this;
         $this->cache = $this->getSessionFlashes();
         $this->unsetLastSessionAndGenerateNewOne();
@@ -29,7 +29,7 @@ class Flash
 
     public function flash(string $type,$message):void{
         $flashes = $this->getSessionFlashes();
-        $this->session->set($message,array_merge(
+        $this->session->set($this->flashKey,array_merge(
             $flashes,
             [$type=>$message]
         ));
@@ -46,11 +46,11 @@ class Flash
     }
 
     private function getSessionFlashes(){
-        return $this->session->get($this->flashKey,[])[$this->flashKey] ?? [];
+        return $this->session->get($this->flashKey,[]);
     }
 
     private function unsetLastSessionAndGenerateNewOne(){
-        $this->session->set($this->flashKey,[]);
+        $this->session->unset($this->flashKey);
     }
 
 }

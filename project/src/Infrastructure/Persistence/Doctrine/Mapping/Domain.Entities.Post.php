@@ -13,13 +13,18 @@ use Doctrine\ORM\Mapping\MappingException;
 (function(ClassMetadata $metadata)
 {
     $metadata->setPrimaryTable([
-        "name" => "posts"
+        "name" => "posts",
     ]);
     $metadata->mapField(array(
         'id' => true,
         'fieldName' => 'id',
-        'type' => 'integer'
+        'type' => 'integer',
+        "options" => [
+            "unique" => true
+        ]
     ));
+    $metadata->setIdentifier(["id"]);
+    $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_AUTO);
     $metadata->mapField(array(
         'fieldName' => 'title',
         'type' => 'string',
@@ -31,13 +36,17 @@ use Doctrine\ORM\Mapping\MappingException;
     ));
 
     $metadata->mapField(array(
-        'fieldName' => 'created_at',
-        'type' => 'date',
+        'fieldName' => 'createdAt',
+        'type' => 'datetime',
+        "options" => [
+            "default" => "CURRENT_TIMESTAMP"
+        ]
     ));
 
     $metadata->mapField(array(
-        'fieldName' => 'updated_at',
-        'type' => 'date',
+        'fieldName' => 'updatedAt',
+        'type' => 'datetime',
+        "nullable" => true
     ));
-})();
+})($metadata);
 

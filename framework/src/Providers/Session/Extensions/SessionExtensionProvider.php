@@ -10,29 +10,21 @@ use Oxygen\Contracts\Providers\Templating\RendererContract;
 use Oxygen\Contracts\ServiceProviderContract;
 use Twig\Environment;
 
-class ExtensionProvider implements ServiceProviderContract
+class SessionExtensionProvider implements ServiceProviderContract
 {
-    /**
-     * @var RendererContract
-     */
-    private $renderer;
-
-    public function __construct(RendererContract $renderer)
-    {
-        $this->renderer = $renderer;
-    }
 
     public function register(AppContract $app)
     {
-        if($this->renderer instanceof Environment){
-            $this->renderer->addExtension(
+        $renderer = $app->getContainer()->get(RendererContract::class);
+        if($renderer instanceof Environment){
+            $renderer->addExtension(
                 $app->getContainer()->get(TwigExtension::class)
             );
             return;
         }
 
-        if($this->renderer instanceof Engine){
-            $this->renderer->loadExtension(
+        if($renderer instanceof Engine){
+            $renderer->loadExtension(
                 $app->getContainer()->get(PlatesExtension::class)
             );
             return;

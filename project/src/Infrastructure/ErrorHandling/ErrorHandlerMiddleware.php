@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\ErrorHandling;
+namespace Infrastructure\ErrorHandling;
 
 
 use Exception;
@@ -32,6 +32,12 @@ class ErrorHandlerMiddleware implements MiddlewareInterface
         $this->config = $config;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param RequestHandlerInterface $handler
+     * @return ResponseInterface
+     * @throws Exception
+     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $environment = $this->config->get("app.environment", "development");

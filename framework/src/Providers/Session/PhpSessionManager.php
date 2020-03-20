@@ -10,7 +10,7 @@ class PhpSessionManager implements SessionManagerContract
 {
     public function __construct()
     {
-        if(!$this->sessionHasStarted() && php_sapi_name() != "cli"){
+        if(!$this->sessionHasStarted()){
             session_start();
         }
     }
@@ -19,9 +19,12 @@ class PhpSessionManager implements SessionManagerContract
         return session_status() == PHP_SESSION_ACTIVE;
     }
 
-    public function get(string $key)
+    public function get(string $key,$default = null)
     {
-        return $_SESSION[$key] ?? null;
+        if(!$this->has($key)){
+            return $default;
+        }
+        return $_SESSION[$key];
     }
 
     public function set(string $key, $value)
@@ -34,13 +37,23 @@ class PhpSessionManager implements SessionManagerContract
         unset($_SESSION[$key]);
     }
 
-    public function has(string $key)
+    public function has(string $key):bool
     {
-        array_key_exists($key,$_SESSION);
+        return array_key_exists($key,$_SESSION);
     }
 
-    public function regenerate(string $key)
+    public function regenerate()
     {
         session_regenerate_id();
+    }
+
+    public function all(): array
+    {
+        return $_SESSION ?? [];
+    }
+
+    public function clear()
+    {
+        unset($_SESSION);
     }
 }

@@ -43,7 +43,7 @@ class MakeControllerCommand extends Command
         $configurator = config();
         $localDisk = disks()->get("local");
         $modulePath = $configurator->get("app.module.path",
-            "src".DIRECTORY_SEPARATOR."Modules");
+            "src".DIRECTORY_SEPARATOR."Application".DIRECTORY_SEPARATOR."Modules");
         $modulePath.= DIRECTORY_SEPARATOR.$moduleName;
 
         if(!$localDisk->has($modulePath)){

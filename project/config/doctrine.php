@@ -1,8 +1,9 @@
 <?php
 return [
     "doctrine.entities.path"=>[
-       "src/Entities"
+       "src/Domain/Entities"
     ],
+    "doctrine.console.active" => true,
     "doctrine.isDevMode"=>false,
     "doctrine.connections"=>[
         "default"=>[
@@ -11,5 +12,6 @@ return [
             'password' => '',
             'dbname'   => 'blog',
         ]
-    ]
+    ],
+    "doctrine.connection" => "default"
 ];

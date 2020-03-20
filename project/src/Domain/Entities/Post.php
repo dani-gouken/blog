@@ -1,40 +1,37 @@
 <?php
 
 
-namespace App\Entities;
-use Doctrine\ORM\Mapping as ORM;
+namespace Domain\Entities;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="posts")
- */
+
+use DateTime;
+
 class Post
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
-     */
+    public function __construct()
+    {
+        if($this->createdAt == null){
+            $this->createdAt = new \DateTime();
+        }
+    }
+
+    private $id;
+
     private $title;
-    /**
-     * @ORM\Column(type="string")
-     */
+
     private $slug;
-    /**
-     * @ORM\Column(type="text")
-     */
+
     private $content;
-    /**
-     * @ORM\Column(type="date")
-     */
+
     private $createdAt;
-    /**
-     * @ORM\Column(type="date",nullable=true)
-     */
+
     private $updatedAt;
 
+    public function getId():int{
+        return $this->id;
+    }
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -42,7 +39,7 @@ class Post
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSlug()
     {
@@ -50,7 +47,7 @@ class Post
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getContent()
     {
@@ -58,7 +55,7 @@ class Post
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
     public function getCreatedAt()
     {
@@ -66,7 +63,7 @@ class Post
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
     public function getUpdatedAt()
     {
@@ -97,7 +94,7 @@ class Post
      * @param mixed $createdAt
      * @return Post
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
         return $this;
@@ -107,10 +104,17 @@ class Post
      * @param mixed $updatedAt
      * @return Post
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
         return $this;
+    }
+
+    public static function newFromArray(array $data):Post{
+        $post = new Post();
+        $post->setTitle($data["title"]);
+        $post->setContent($data["content"]);
+        return $post;
     }
 
 }

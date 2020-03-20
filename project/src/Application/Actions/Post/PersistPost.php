@@ -3,7 +3,8 @@
 
 namespace App\Actions\Post;
 
-use App\Entities\Post;
+use Domain\Entities\Post;
+use Domain\Repositories\PostRepository;
 use Oxygen\AbstractTypes\AbstractValidatedRequest;
 use Oxygen\Contracts\AppContract;
 use Oxygen\Providers\Session\FlashMessageManager;
@@ -11,22 +12,28 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
-class CreatePost extends AbstractValidatedRequest implements MiddlewareInterface
+class PersistPost extends AbstractValidatedRequest implements MiddlewareInterface
 {
     /**
      * @var FlashMessageManager
      */
     private $flasher;
+    /**
+     * @var PostRepository
+     */
+    private $repository;
+    /**
+     * @var Post|null
+     */
+    private $post;
 
-    public function __construct(FlashMessageManager $flasher)
+    public function __construct(FlashMessageManager $flasher,PostRepository $repository,?Post $post)
     {
         $this->flasher = $flasher;
+        $this->repository = $repository;
+        $this->post = $post;
     }
 
-    /**
-     * @var FlashMessageManager
-     */
-    private $flash;
 
     public function rules(): array
     {
@@ -44,9 +51,17 @@ class CreatePost extends AbstractValidatedRequest implements MiddlewareInterface
 
     public function passes(ServerRequestInterface $request, AppContract $handler): ResponseInterface
     {
-        $post = new Post();
         $data = $request->getParsedBody();
-        $post->setTitle($data["title"]);
-        $post->setContent($data["content"]);
+        if(!$this->post){
+            $post = Post::newFromArray($data);
+            $this->repository->create($post);
+        }else{
+            $this->post->setTitle($data["title"]);
+            $this->post->setContent($data["content"]);
+            $this->repository->update($this->post);
+        }
+        $this->flasher->flash("success","Post created");
+        return $handler->handle($request);
+
     }
 }

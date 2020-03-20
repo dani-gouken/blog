@@ -35,7 +35,7 @@ class MakeModuleCommand extends Command
         $moduleName = $input->getArgument("module");
         $configurator = $this->app->getContainer()->get(Configurator::class);
         $modulePath = $configurator->get("app.module.path",
-           "src".DIRECTORY_SEPARATOR."Modules");
+           "src".DIRECTORY_SEPARATOR."Application/Modules");
         $modulePath.= DIRECTORY_SEPARATOR.ucfirst($moduleName);
 
         if ($localDisk->has($modulePath.DIRECTORY_SEPARATOR)){
@@ -46,11 +46,11 @@ class MakeModuleCommand extends Command
         $localDisk->write("$modulePath/$fileName",$this->getTemplate($moduleName));
         $localDisk->createDir("$modulePath/Controllers");
         $moduleClass = "\App\Modules\\".$moduleName."\\".ucfirst($moduleName)."Module::class";
-        $mainMiddlewareContent = $localDisk->read("src/Main.php");
+        $mainMiddlewareContent = $localDisk->read("src".DIRECTORY_SEPARATOR."Application/Main.php");
         $mainMiddlewareContent = str_replace("[MODULES]",
             "[MODULES] \n\t\t\$handler->load($moduleClass);",
             $mainMiddlewareContent);
-        $localDisk->put("src/Main.php",$mainMiddlewareContent);
+        $localDisk->put("src".DIRECTORY_SEPARATOR."Application/Main.php",$mainMiddlewareContent);
         $output->writeln("Module successfully created on [$modulePath]");
         return 0;
     }

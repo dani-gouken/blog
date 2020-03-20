@@ -2,7 +2,7 @@
 
 namespace App\Modules\Admin\Controllers;
 
-use App\Actions\Post\CreatePost;
+use App\Actions\Post\PersistPost;
 use App\Entities\Post;
 use Oxygen\AbstractTypes\AbstractWebController;
 use Oxygen\Contracts\AppContract;
@@ -14,6 +14,7 @@ use Psr\Http\Server\MiddlewareInterface;
 
 class CreatePostController extends AbstractWebController implements MiddlewareInterface
 {
+
     /**
      * @param ServerRequestInterface $request
      * @param AppContract $handler
@@ -33,8 +34,7 @@ class CreatePostController extends AbstractWebController implements MiddlewareIn
      */
     public function doPost(ServerRequestInterface $request, AppContract $handler)
     {
-        $handler->pipe(CreatePost::class);
-        $handler->pipe();
+        $handler->pipe(PersistPost::class);
         $handler->pipe(redirectRouteAction("post.index"));
         return $handler->handle($request);
     }

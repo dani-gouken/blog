@@ -88,10 +88,6 @@ class AppFactory
     public function use(ServiceProviderContract $service){
         $this->app->use($service);
     }
-    public function useDoctrine(){
-        $doctrineProvider = $this->app->get(DoctrineProvider::class);
-        $this->app->use($doctrineProvider);
-    }
 
     public function useConfig(array $configFiles)
     {

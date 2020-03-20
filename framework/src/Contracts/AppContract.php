@@ -60,4 +60,11 @@ interface AppContract extends RequestHandlerInterface
      */
     public function pipeReplacement($middleware):AppContract;
 
+    /**
+     * alias for PipeReplacement
+     * @param MiddlewareInterface|string $middleware
+     * @return AppContract
+     */
+    public function load($middleware):AppContract;
+
 }

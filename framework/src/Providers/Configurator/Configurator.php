@@ -2,6 +2,8 @@
 
 namespace Oxygen\Providers\Configurator;
 
+use InvalidArgumentException;
+
 class Configurator
 {
     private $config = [];
@@ -20,18 +22,17 @@ class Configurator
      * @param string $key
      * @param null $default
      * @return mixed|null
-     * @throws \Exception
      */
     public function get(string $key,$default=null){
         if(!array_key_exists($key,$this->config) && is_null($default)){
-            throw new \Exception("Cannot resolve key [$key] in configuration");
+            throw new InvalidArgumentException("Cannot resolve key [$key] in configuration");
         }
         return $this->config[$key] ?? $default;
     }
     public function loadFile(string $path){
         $data = require_once($path);
         if (!is_array($data)){
-            throw new \Exception("the configuration file [$path] is invalid");
+            throw new InvalidArgumentException("the configuration file [$path] is invalid");
         }
         $this->load($data);
     }

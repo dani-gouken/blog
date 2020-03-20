@@ -37,9 +37,9 @@ if (!function_exists("disks")){
 
 if(!function_exists("router")){
     /**
-     * @return RouterContract
+     * @return Router
      */
-    function router(): RouterContract{
+    function router(): Router{
         return Router::$instance;
     }
 }

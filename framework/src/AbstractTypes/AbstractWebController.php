@@ -29,11 +29,6 @@ abstract class AbstractWebController
      */
     protected $renderer;
 
-    public function __construct(RendererContract $renderer)
-    {
-        $this->renderer = $renderer;
-    }
-
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         /**

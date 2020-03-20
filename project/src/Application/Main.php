@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use Infrastructure\Persistence\Doctrine\DoctrineServiceProvider;
 use App\Modules\Admin\AdminModule;
 use App\Modules\Front\FrontModule;
 use Oxygen\Contracts\AppContract;
@@ -21,8 +22,11 @@ class Main implements MiddlewareInterface
         /**
          * @var $handler AppContract
          */
-        // [MODULES] 
-		$handler->load(AdminModule::class);
+        // [MODULES]
+        $handler->use(new DoctrineServiceProvider());
+
+        $handler->load(\App\Modules\Test\TestModule::class);
+        $handler->load(AdminModule::class);
 		$handler->load(FrontModule::class);
         return $handler->handle($request);
     }

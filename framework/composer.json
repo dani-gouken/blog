@@ -37,7 +37,8 @@
         "symfony/console": "^5.0",
         "doctrine/orm": "^2.7",
         "league/flysystem": "^1.0",
-        "rakit/validation": "^1.2"
+        "rakit/validation": "^1.2",
+        "doctrine/migrations": "^2.0"
     },
     "repositories": {
       "expresive-dic-repo":{
