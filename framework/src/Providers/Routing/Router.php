@@ -7,8 +7,8 @@ use Oxygen\Contracts\Providers\Routing\AbstractRouteContract;
 use Oxygen\Contracts\Providers\Routing\RouteContract;
 use Oxygen\Contracts\Providers\Routing\RouteGroupContract;
 use Oxygen\Contracts\Providers\Routing\RouterContract;
-use Oxygen\Exceptions\Routing\MethodNotAllowedException;
-use Oxygen\Exceptions\Routing\RouteNotFoundException;
+use Oxygen\Providers\Routing\Exceptions\MethodNotAllowedException;
+use Oxygen\Providers\Routing\Exceptions\RouteNotFoundException;
 use Psr\Http\Message\ServerRequestInterface;
 use function FastRoute\simpleDispatcher;
 

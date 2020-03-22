@@ -1,0 +1,53 @@
+App (Oxygen\Test\App)
+ [x] If it can be constructed
+ [x] It save the instance of the app
+ [x] It pipe a middleware
+ [x] It throw if youtry to pipe and invalid middleware
+ [x] If it pipe a middleware at a specific position
+ [x] It throw if the given index is not valid
+ [x] If it pipe a middleware as the next one
+ [x] That it handle a request
+ [x] It throw if the no middleware was piped
+
+Abstract Event Listener (Oxygen\Test\Event\AbstractEventListener)
+ [x] The listener is called once
+ [x] The listener is called a specific number of time
+ [x] The listener is never called
+ [x] Listeners are ordered
+
+Abstract Event (Oxygen\Test\Event\AbstractEvent)
+ [x] The propagation is stopped
+
+Event Dispatcher (Oxygen\Test\Event\EventDispatcher)
+ [x] It is a singleton
+ [x] It add event listener
+ [x] It generate a new empty instance
+ [x] It throw an exception if the listener is already bound to an the event
+ [x] It add event listeners
+ [x] It check the type when listeners are added
+ [x] It check the type of the event when dispatch is called
+ [x] It dispatch an event
+ [x] A listener is not called if it is not active
+ [x] Event listener providers are dispatched
+ [x] Event listeners are executed in the right order
+
+Route Parser (Oxygen\Test\Providers\Routing\RouteParser)
+ [x] It generate url for simple route
+ [x] It generate url with parameters
+ [x] It generate url with route group
+ [x] It throw if there is missing parameters when generating route
+
+Router (Oxygen\Test\Provider\Routing\Router)
+ [x] It store route
+ [x] It create route group
+ [x] It throw if no route was registered
+ [x] It throw if no matched route was found
+ [x] It match route
+ [x] It match route with trailing slash
+ [x] It match route with valid parameters
+ [x] It doesnt match route with invalid parameters
+ [x] It doesnt match route with invalid method
+ [x] It match route inside route group
+ [x] It throw with no route was found using route group
+ [x] It generate url using route name
+

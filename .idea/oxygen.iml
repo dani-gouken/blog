@@ -6,6 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/framework/src" isTestSource="false" packagePrefix="Oxygen" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor" />
     </content>
+    <content url="file://$MODULE_DIR$/project/vendor/maximebf" />
+    <content url="file://$MODULE_DIR$/project/vendor/middlewares" />
+    <content url="file://$MODULE_DIR$/project/vendor/php-middleware" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

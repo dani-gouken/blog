@@ -2,8 +2,8 @@
 
 namespace Oxygen\Providers\Routing\Middlewares;
 
-use Oxygen\Exceptions\Routing\MethodNotAllowedException;
-use Oxygen\Exceptions\Routing\RouteNotFoundException;
+use Oxygen\Providers\Routing\Exceptions\MethodNotAllowedException;
+use Oxygen\Providers\Routing\Exceptions\RouteNotFoundException;
 use Oxygen\Providers\Routing\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

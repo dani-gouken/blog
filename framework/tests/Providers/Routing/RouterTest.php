@@ -1,11 +1,11 @@
 <?php
 
-namespace Oxygen\Test\Routing;
+namespace Oxygen\Test\Provider\Routing;
 
 use Oxygen\Contracts\Providers\Routing\RouteContract;
 use Oxygen\Contracts\Providers\Routing\RouteGroupContract;
-use Oxygen\Exceptions\Routing\MethodNotAllowedException;
-use Oxygen\Exceptions\Routing\RouteNotFoundException;
+use Oxygen\Providers\Routing\Exceptions\MethodNotAllowedException;
+use Oxygen\Providers\Routing\Exceptions\RouteNotFoundException;
 use Oxygen\Providers\Routing\Route;
 use Oxygen\Providers\Routing\Router;
 use Oxygen\Test\BasicTest;

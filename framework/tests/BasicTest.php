@@ -10,10 +10,16 @@ class BasicTest extends TestCase
 {
 	public function createApp(){
 		$stubContainer = $this->createStub(ContainerContract::class);
-		$app = new App($stubContainer);
+		$app = new App($stubContainer,dirname(__DIR__));
 		return $app;
-	} 
+	}
 
+    /**
+     * @param $object
+     * @param $property
+     * @param $value
+     * @throws \ReflectionException
+     */
 	public function setProtectedProperty($object, $property, $value){
         try {
             $reflection = new ReflectionClass($object);

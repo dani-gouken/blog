@@ -95,7 +95,6 @@
 
 <!-- Custom scripts for this template -->
 <script src="<?= $this->asset("js/clean-blog.min.js") ?>"></script>
-
 </body>
 
 </html>

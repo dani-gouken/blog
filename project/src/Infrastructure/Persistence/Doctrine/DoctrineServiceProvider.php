@@ -3,7 +3,6 @@
 
 namespace Infrastructure\Persistence\Doctrine;
 
-
 use Infrastructure\Persistence\Doctrine\Repositories\DoctrinePostRepository;
 use Domain\Repositories\PostRepository;
 use Oxygen\Contracts\AppContract;

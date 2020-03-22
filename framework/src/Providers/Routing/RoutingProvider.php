@@ -6,8 +6,6 @@ namespace Oxygen\Providers\Routing;
 use Oxygen\Contracts\AppContract;
 use Oxygen\Contracts\Providers\Routing\RouterContract;
 use Oxygen\Contracts\ServiceProviderContract;
-use Oxygen\Providers\Configurator\Configurator;
-use Psr\Container\NotFoundExceptionInterface;
 
 class RoutingProvider implements ServiceProviderContract
 {

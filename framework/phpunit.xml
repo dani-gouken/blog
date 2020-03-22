@@ -13,8 +13,9 @@
 
 	<testsuites>
 		<testsuite name="Oxygen Test Suite">
-			<directory>framework/tests</directory>
-			<exclude>./framework/tests/BasicTest.php</exclude>
+			<directory>./tests</directory>
+			<exclude>./tests/BasicTest.php</exclude>
+			<exclude>./tests/Event/BaseEventTest.php</exclude>
 		</testsuite>
 	</testsuites>
 

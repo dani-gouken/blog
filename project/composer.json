@@ -36,5 +36,8 @@
     "require": {
         "oxygen/framework": "@dev",
         "doctrine/migrations": "^2.0"
+    },
+    "require-dev": {
+        "php-middleware/php-debug-bar": "^3.1"
     }
 }

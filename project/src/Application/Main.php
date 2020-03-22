@@ -1,9 +1,11 @@
 <?php
 
 namespace App;
-use Infrastructure\Persistence\Doctrine\DoctrineServiceProvider;
 use App\Modules\Admin\AdminModule;
 use App\Modules\Front\FrontModule;
+use App\Modules\Test\TestModule;
+use Infrastructure\DebugBar\DebugBarProvider;
+use Infrastructure\Persistence\Doctrine\DoctrineServiceProvider;
 use Oxygen\Contracts\AppContract;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,10 +26,10 @@ class Main implements MiddlewareInterface
          */
         // [MODULES]
         $handler->use(new DoctrineServiceProvider());
-
-        $handler->load(\App\Modules\Test\TestModule::class);
+        $handler->use(new DebugBarProvider());
+        $handler->load(TestModule::class);
         $handler->load(AdminModule::class);
-		$handler->load(FrontModule::class);
+        $handler->load(FrontModule::class);
         return $handler->handle($request);
     }
 }

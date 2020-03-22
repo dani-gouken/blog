@@ -1,9 +1,13 @@
 <?php
 namespace Oxygen;
+use Doctrine\Common\EventManager;
 use Oxygen\Contracts\AppContract;
 use Oxygen\Contracts\ContainerContract;
 use Oxygen\Contracts\EmitterContract;
+use Oxygen\Contracts\Events\EventDispatcherContract;
 use Oxygen\Contracts\ServiceProviderContract;
+use Oxygen\Event\ApplicationEvents\MiddlewareLoaded;
+use Oxygen\Event\EventDispatcher;
 use Oxygen\Exceptions\RequestHandlerException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,16 +26,19 @@ class App implements AppContract
      * @var string
      */
     private $appPath;
+    /**
+     * @var EventDispatcher
+     */
+    private $eventDispatcher;
 
     public function __construct(
         ContainerContract $container,
         string $appPath
     ) {
+        $this->eventDispatcher = new EventDispatcher();
         $this->container = $container;
-        $container->set(ContainerContract::class,$this->container);
-        $container->set(AppContract::class,$this);
-        self::$instance = $this;
         $this->appPath = $this->removeSlashesToPath($appPath);
+        $this->boot();
     }
 
     /**
@@ -111,6 +118,7 @@ class App implements AppContract
         $currentMiddleware = $this->getCurrentMiddleware();
         $this->index++;
         if (!is_null($currentMiddleware)) {
+            $this->eventDispatcher->dispatch(new MiddlewareLoaded($currentMiddleware));
             $this->response = $currentMiddleware->process($request, $this);
         }
         return $this->response;
@@ -253,5 +261,19 @@ class App implements AppContract
 
     public function appPath(string $path = null):string{
         return $this->appPath.DIRECTORY_SEPARATOR.$this->removeSlashesToPath($path);
+    }
+
+    private function boot()
+    {
+        $this->container->set(ContainerContract::class,$this->container);
+        $this->container->set(AppContract::class,$this);
+        $this->container->set(EventDispatcherContract::class,$this->eventDispatcher);
+        $this->container->set(EventDispatcher::class,$this->eventDispatcher);
+        self::$instance = $this;
+    }
+
+    public function getEventDispatcher(): EventDispatcherContract
+    {
+        return $this->eventDispatcher;
     }
 }

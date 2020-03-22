@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+use Infrastructure\DebugBar\DebugBarProvider;
 use Oxygen\Providers\Console\Console;
 use Oxygen\Providers\Console\ConsoleProvider;
 use Oxygen\Providers\Database\Doctrine\DoctrineProvider;
@@ -14,5 +15,6 @@ $app->use(new ConsoleProvider());
  */
 $doctrineProvider = $app->get(DoctrineProvider::class);
 $app->use($doctrineProvider);
+$app->use(new DebugBarProvider());
 $console = $app->get(Console::class)->getApplication();
 $console->run();

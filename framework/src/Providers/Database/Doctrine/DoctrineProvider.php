@@ -64,16 +64,6 @@ class DoctrineProvider implements ServiceProviderContract
             $em = $app->getContainer()->get(EntityManager::class);
             $console = $app->getContainer()->get(Console::class);
             $this->addMigrationCommand($console,$app,$em);
-            $console->getApplication()->addCommands(array(
-                new Command\DumpSchemaCommand(),
-                new Command\ExecuteCommand(),
-                new Command\GenerateCommand(),
-                new Command\LatestCommand(),
-                new Command\MigrateCommand(),
-                new Command\RollupCommand(),
-                new Command\StatusCommand(),
-                new Command\VersionCommand()
-            ));
             ConsoleRunner::addCommands($console->getApplication());
         }
     }

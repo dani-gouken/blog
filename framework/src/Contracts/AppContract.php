@@ -3,6 +3,7 @@
 
 namespace Oxygen\Contracts;
 
+use Oxygen\Contracts\Events\EventDispatcherContract;
 use Oxygen\Exceptions\RequestHandlerException;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -66,5 +67,7 @@ interface AppContract extends RequestHandlerInterface
      * @return AppContract
      */
     public function load($middleware):AppContract;
+
+    public function getEventDispatcher():EventDispatcherContract;
 
 }

@@ -1,5 +1,5 @@
 <?php
-    namespace Oxygen\Exceptions\Routing;
+    namespace Oxygen\Providers\Routing\Exceptions;
 
 class MethodNotAllowedException extends \Exception
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Oxygen\Test\Routing;
+namespace Oxygen\Test\Providers\Routing;
 use Oxygen\Providers\Routing\Route;
 use Oxygen\Providers\Routing\RouteGroup;
 use Oxygen\Providers\Routing\RouteParser;
